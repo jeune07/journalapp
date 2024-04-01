@@ -8,7 +8,7 @@ The application facilitates account creation using either email or existing soci
 The purpose of the application is to provide users with a platform to create accounts easily and publish their journals hassle-free.
 
 ## Demo Video
-Watch the software demo video [here](https://www.loom.com/share/6385f1551b544f14bbcd2bfd867f2799?sid=4ea5aa0d-5888-4cd8-8871-cefaf2fedabb).
+Watch the software demo video [here](https://www.loom.com/share/23568d66051346928b49c98fc9b46ba6?sid=08d355aa-1b71-4e24-b62d-597dc78d243d).
 
 # Development Environment
 
