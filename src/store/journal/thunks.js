@@ -1,6 +1,6 @@
 import {collection, doc, setDoc} from "firebase/firestore/lite"
 import { FirebaseDB } from "../../firebase/config";
-import { addNewEmptyNote, setActiveNote,savingNewNote, setNotes} from "./journalSlice";
+import { addNewEmptyNote, setActiveNote,savingNewNote, setNotes, setSaving, updateNote} from "./journalSlice";
 import { loadNotes } from "../../helpers/loadNote";
 
 
@@ -34,18 +34,48 @@ export const startNewNote =()=> {
 }
 
 
-export const startNewLoadingNotes =()=> {
+// export const startNewLoadingNotes =()=> {
 
-    return async(dispatch,getState)=> {
+//     return async(dispatch,getState)=> {
 
-        const  {uid} = getState().auth; 
-        if(! uid) throw new Error("The UId does not exist");
-        const notes= await  loadNotes(uid)
+//         const  {uid} = getState().auth; 
+//         if(! uid) throw new Error("The UId does not exist");
+//         const notes= await  loadNotes(uid)
 
-        dispatch(setNotes(notes))
+//         dispatch(setNotes("this the note without the id", notes))
         
+//     }    
+
+// }
+
+export const startNewLoadingNotes = () => {
+    return async (dispatch, getState) => {
+        const { uid } = getState().auth; 
+        if (!uid) throw new Error("The UId does not exist");
+        
+        const notes = await loadNotes(uid);
+
+        dispatch(setNotes(notes));
     }
+}
 
+
+
+
+
+export const startSaveNote =()=> {
+
+    return async (dispatch,getState)=> {
+        dispatch(setSaving())
+        const  {uid} = getState().auth;
+       const {activeNote: notes} = getState().journal
+       const noteToFireStore = {...notes}
+       delete noteToFireStore.id
+
+       const docRef = doc(FirebaseDB,`${uid}/journal/notes/ ${notes.id}`)
+       await  setDoc(docRef,noteToFireStore,{merge:true})
+
+       dispatch(updateNote(notes))
+    }
     
-
 }

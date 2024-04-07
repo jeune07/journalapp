@@ -5,9 +5,6 @@ import { TurnedInNot } from '@mui/icons-material';
 import { setActiveNote } from '../../store/journal/journalSlice';
 
 const SideBarItem = ({ title ="", date, body, imagesURLs =[],id}) => {
-
-
-
     const newTitle = useMemo( () => {
 
         return  title.length > 17
@@ -15,15 +12,12 @@ const SideBarItem = ({ title ="", date, body, imagesURLs =[],id}) => {
         : title
     },[title])
 
-
     const dispatch =useDispatch()
     const onClickActiveNote = () => {
-        dispatch(setActiveNote({title, date, body, imagesURLs,id}))
+        dispatch(setActiveNote({ title, date, body, imagesURLs, id }))
       }
 
-  return (
-
-    
+  return (    
     <>
     <ListItem  disablePadding>
     <ListItemButton onClick={onClickActiveNote}>
