@@ -64,18 +64,18 @@ export const startNewLoadingNotes = () => {
 
 
 export const startSaveNote =()=> {
-
     return async (dispatch,getState)=> {
-        dispatch(setSaving())
-        const  {uid} = getState().auth;
-       const {activeNote: notes} = getState().journal
-       const noteToFireStore = {...notes}
-       delete noteToFireStore.id
 
-       const docRef = doc(FirebaseDB,`${uid}/journal/notes/ ${notes.id}`)
-       await  setDoc(docRef,noteToFireStore,{merge:true})
+    dispatch(setSaving())
+    const  {uid} = getState().auth;
+    const {activeNote: notes} = getState().journal
+    const noteToFireStore = {...notes}
+    delete noteToFireStore.id
+    console.log(noteToFireStore)
+    const docRef = doc(FirebaseDB,`${uid}/journal/notes/ ${notes.id}`)
+    await  setDoc(docRef,noteToFireStore,{merge:true})
 
-       dispatch(updateNote(notes))
+    dispatch(updateNote(notes))
     }
     
 }
