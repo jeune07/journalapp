@@ -8,7 +8,7 @@ The application facilitates account creation using either email or existing soci
 The purpose of the application is to provide users with a platform to create accounts easily and publish their journals hassle-free.
 
 ## Demo Video
-Watch the software demo video [here](https://www.loom.com/share/23568d66051346928b49c98fc9b46ba6?sid=08d355aa-1b71-4e24-b62d-597dc78d243d).
+Watch the software demo video [here](https://www.loom.com/share/3185e1a4dda342c7a02c1668f3b907d1?sid=b4feedd4-b96e-4566-8707-fdcabe5d434b).
 
 # Development Environment
 
@@ -21,6 +21,7 @@ Watch the software demo video [here](https://www.loom.com/share/23568d6605134692
 - Custom hooks
 - Redux
 - Redux Toolkit
+-cloudinary
 
 ## Useful Websites
 - [React Documentation](https://reactjs.org/)

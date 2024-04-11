@@ -6,8 +6,8 @@ import { useForm } from '../../hooks/useForm';
 import { useEffect, useMemo } from 'react';
 import { setActiveNote } from '../../store/journal/journalSlice';
 import { startSaveNote } from '../../store/journal/thunks';
-import Swal from 'sweetalert2';
-import 'sweetalert2/src/sweetalert2.scss'
+
+
 
 
 //import { startSaveNote } from '../../store/journal/thunks';
@@ -15,34 +15,36 @@ import 'sweetalert2/src/sweetalert2.scss'
 
 
 export const NoteView = () => {
-    const MySwal = withReactContent(Swal)
+   // const MySwal = withReactContent(Swal)
 
     const dispatch  = useDispatch()
     const {activeNote: note,messageSaved} = useSelector(state =>state.journal)
     const {title, date, body, imagesURLs, id, onInputChange,formState} = useForm(note)
-c
+    const dateString = date ? new Date(date).toLocaleDateString() : '';
+    const  {isSaving, activeNote} =useSelector(state  => state.journal)
+
 
     useEffect(() => {
         dispatch(setActiveNote(formState))
     }, [formState])
 
-    useEffect(() => {     
+    // useEffect(() => {     
 
-        if (messageSaved && messageSaved.length > 0) {
-            Swal.fire("Note actualized", messageSaved, "success"); 
-        }
-        Swal.fire("Note actualized", messageSaved, "success");
+    //     if (messageSaved && messageSaved.length > 0) {
+    //         Swal.fire("Note actualized", messageSaved, "success"); 
+    //     }
+    //     Swal.fire("Note actualized", messageSaved, "success");
 
-    //     MySwal.fire({
-    //         title: <p>Hello World</p>,
-    //         didOpen: () => {
-    //           // `MySwal` is a subclass of `Swal` with all the same instance & static methods
-    //           MySwal.showLoading()
-    //         },
-    //       }).then(() => {
-    //         MySwal.fire(<p>Shorthand works too</p>)
-    //       })
-     }, [messageSaved])
+    // //     MySwal.fire({
+    // //         title: <p>Hello World</p>,
+    // //         didOpen: () => {
+    // //           // `MySwal` is a subclass of `Swal` with all the same instance & static methods
+    // //           MySwal.showLoading()
+    // //         },
+    // //       }).then(() => {
+    // //         MySwal.fire(<p>Shorthand works too</p>)
+    // //       })
+    //  }, [messageSaved])
 
     const onSaveNote = ()=> {
         dispatch(startSaveNote())
@@ -71,16 +73,18 @@ c
         </Grid>
         <Grid item>
 
-            <input 
+            {/* <input 
             type="file"
             multiple
+            ref={fileInputRef}
             onChange={onFileInputChange}
-             />
+             /> */}
 
             <IconButton
                 color="primary"
                 desabled={isSaving}
                 style={{display:"none"}}
+                onClick={()=> fileInputRef.current.click()}
             >                
                 <UploadOutlined/>
             </IconButton>
